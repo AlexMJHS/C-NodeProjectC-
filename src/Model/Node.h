@@ -8,10 +8,18 @@
 #ifndef MODEL_NODE_H_
 #define MODEL_NODE_H_
 
-class Node {
+template <class Type>
+class Node
+{
+private:
+	Type value;			//Container for the value stored in the node.
+	Node * pointers;	//Pointer to the array of Nodes that are linked to this node.
 public:
 	Node();
+	Node(Type value);
 	virtual ~Node();
+	Type getValue();
+	Node * getPointers();
 };
 
 #endif /* MODEL_NODE_H_ */
