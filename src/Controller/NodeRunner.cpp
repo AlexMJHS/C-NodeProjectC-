@@ -8,6 +8,8 @@
 
 int main()
 {
+	NodeController * baseController = new NodeController();
+	baseController->start();
 	return 0;
 }
 

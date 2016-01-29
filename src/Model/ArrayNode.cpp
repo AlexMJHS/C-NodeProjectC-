@@ -35,3 +35,8 @@ ArrayNode<Type>::~ArrayNode()
 	// TODO Auto-generated destructor stub
 }
 
+template <class Type>
+ArrayNode<Type> * ArrayNode<Type> :: getNext()
+{
+	return this->next;
+}
