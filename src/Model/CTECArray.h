@@ -18,10 +18,9 @@ class CTECArray
 {
 private:
 	int size;
-	int length;
 	ArrayNode<Type> * head;
 public:
-	CTECArray();
+	CTECArray(int size);
 	virtual ~CTECArray();
 	int getSize();
 	Type* get(int position);

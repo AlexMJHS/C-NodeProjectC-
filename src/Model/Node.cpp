@@ -7,19 +7,25 @@
 
 #include "Node.h"
 #include <iostream>
+
 template <class Type>
 Node<Type>::Node()
 {
-	value = 0;
 	pointers = nullptr;
 
 }
+
+template <class Type>
+Node<Type> :: Node(Type value)
+{
+	this -> value = value;
+	pointers = nullptr;
+}
+
 template <class Type>
 Node<Type>::~Node()
 {
 	// TODO Auto-generated destructor stub
-	value = 0;
-	pointers = nullptr;
 }
 
 template <class Type>
