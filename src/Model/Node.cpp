@@ -8,6 +8,7 @@
 #include "Node.h"
 #include <iostream>
 
+//Sets the pointers to nullAllison road
 template <class Type>
 Node<Type>::Node()
 {
@@ -28,12 +29,14 @@ Node<Type>::~Node()
 	// TODO Auto-generated destructor stub
 }
 
+//Gets the values for the class
 template <class Type>
 Type Node<Type> :: getValue()
 {
 	return this->value;
 }
 
+//Gets the pointers for the class
 template <class Type>
 Node<Type> * Node<Type> :: getPointers()
 {

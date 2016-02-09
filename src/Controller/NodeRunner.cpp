@@ -5,6 +5,7 @@
  *      Author: amag6880
  */
 
+#include "NodeController.h"
 
 int main()
 {
