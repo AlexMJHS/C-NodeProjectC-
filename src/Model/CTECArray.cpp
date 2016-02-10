@@ -6,32 +6,29 @@
  */
 
 #include "CTECArray.h"
+#include <assert.h>
 using namespace std;
 
 template <class Type>
 CTECArray<Type>::CTECArray(int size)
 {
 	this->size = size;
-	head = nullptr;
+	this->head = nullptr;
 
-	if(size <= 0)
-	{
-		cerr << "Impossible" << endl;
-		return;
-	}
+	assert(size > 0);
 
-	for(int index = 0; index < size; index++);
+	for(int index = 0; index < size; index++)
 	{
 		if(head != nullptr)
 		{	//We have more than one ArrayNode.
-			ArrayNode<Type> nextNode;
-			nextNode.setNext(head);
-			head = &nextNode;
+			ArrayNode<Type> * nextNode = new ArrayNode<Type>();
+			nextNode->setNext(head);
+			head = nextNode;
 		}
 		else
 		{	//This is the first node in the array.
-			ArrayNode<Type> first;
-			head = &first;
+			ArrayNode<Type> * first = new ArrayNode<Type>();
+			head = first;
 		}
 	}
 
@@ -61,52 +58,49 @@ int CTECArray<Type>:: getSize()
 }
 
 template <class Type>
-Type* CTECArray<Type>:: get(int position)
+Type CTECArray<Type>:: get(int position)
 {
-	//Bounds check for size and negative.
-	if(position > size || position < 0)
+	/*
+	 * Bounds check for size and negative.
+	 * The call to assert checks that the position lies within
+	 * the valid range of indices. If it is out of the bounds,
+	 * the program will exit.
+	 */
+	assert(position < size && position >= 0);
+
+	ArrayNode<Type> * current = head;
+	//Inclusive because I am inside the bounds guaranteed.
+	for(int spot = 0; spot <= position; spot++)
 	{
-		return nullptr;
-	}
-	else
-	{
-		ArrayNode<Type> * current = head;
-		//Inclusive because I am inside the bounds guaranteed.
-		for(int spot = 0; spot <= position; spot++)
+		if(spot != position)
 		{
-			if(spot != position)
-			{
-				current = current->getNext();
-			}
-			else
-			{
-				Type temp = current->getValue(); //Grab the value stored in the Node.
-				return &temp;					 //Return a pointer to the value
-			}
+			current = current->getNext();
+		}
+		else
+		{
+			return current->getValue();
 		}
 	}
 }
 
+
 template <class Type>
-void CTECArray<Type>:: set(int position, Type value)
+void CTECArray<Type>:: set(int position, const Type& value)
 {
-	if(position >= size || position < 0)
+	//Bounds check for size and negative
+	assert(position < size && position >= 0);
+
+	ArrayNode<Type> * current = head;
+	for (int spot = 0; spot <= position; spot++)
+	{
+		if (spot != position)
 		{
-			cerr << "Don't do this! Out of bounds!" << endl;
+			current = current->getNext();
 		}
 		else
 		{
-			ArrayNode<Type> * current = head;
-			for (int spot = 0; spot <= position; spot++)
-			{
-				if (spot != position)
-				{
-					current = current->getNext();
-				}
-				else
-				{
-					current->setValue(value);
-				}
-			}
+			current->setValue(value);
 		}
+	}
 }
+
