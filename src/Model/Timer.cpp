@@ -20,7 +20,7 @@ Timer::~Timer()
 {
 	// TODO Auto-generated destructor stub
 }
-
+// Displays the timer info.
 void Timer::displayTimerInformation()
 {
 	cout << fixed;
@@ -29,17 +29,18 @@ void Timer::displayTimerInformation()
 	cout << executionTime << " us (microseconds) for the code " << endl;
 	cout << "Which is " << float(executionTime)/CLOCKS_PER_SEC<< " seconds" << endl;
 }
-
+	// Starts the Timer.
 void Timer::startTimer()
 {
 	executionTime = clock();
 }
-
+	// Stops the timer.
 void Timer::stopTimer()
 {
 	executionTime = clock() - executionTime;
 }
 
+	// This will reset the timer back to zero.
 void Timer::resetTimer()
 {
 	executionTime = 0;
